@@ -1,0 +1,24 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.weightscale.weight_scale_app"
+        minSdkVersion 29  // Android 10
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+}
